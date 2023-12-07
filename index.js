@@ -5,7 +5,7 @@ const {userRouter} = require('./routes/user.Routes')
 const {postRouter} = require('./routes/post.Routes')
 const cors = require('cors')
 const {connection} = require('./db')
-const { allPostRouter } = require('./routes/allpost.Routes')
+const { allPostRouter } = require('./routes/allPost.Routes')
 
 const app = express()
 app.use(cors());
