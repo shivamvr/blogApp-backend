@@ -4,6 +4,7 @@ const express = require('express')
 const { PostModel } = require('../model/post.model')
 const cors = require('cors')
 const allPostRouter = express.Router()
+
 allPostRouter.use(cors());
 
 // Get  post
