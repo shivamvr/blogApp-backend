@@ -42,7 +42,7 @@ orderRouter.post("/", async (req, res) => {
 orderRouter.post('/orders', async (req, res) => {
     console.log(req.body, 'body')
     try {
-        if (req.body.isAdmin) {
+        if (true) {
             const orders = await OrderModel.find()
             res.status(200).send(orders)
         } else {
