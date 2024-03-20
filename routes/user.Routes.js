@@ -1,5 +1,7 @@
 
 
+
+
 const express = require('express')
 const { UserModel } = require('../model/user.model')
 const jwt = require('jsonwebtoken')
@@ -12,10 +14,10 @@ const bcrypt = require('bcrypt')
 // Register
 
 userRouter.post("/register", async (req, res) => {
-    const { name, email, gender, pass } = req.body
-    try {
+    const { name, email, pass, isAdmin } = req.body
+    try { 
         bcrypt.hash(pass, 5, async (err, hash) => {
-            const user = new UserModel({ name, email, gender, pass: hash })
+            const user = new UserModel({ name, email, isAdmin, pass: hash })
             await user.save()
             res.status(200).send({ "msg": "A new user registered" })
         })
@@ -29,8 +31,9 @@ userRouter.post("/register", async (req, res) => {
 
 userRouter.post("/login", async (req, res) => {
     const { email, pass } = req.body
-    // console.log('login post request')
+    console.log('login post request',email,pass)
     const user = await UserModel.findOne({ email })
+    console.log('user',user)
     if (!user) {
         res.status(400).send({ "msg": "user not found" })
         return

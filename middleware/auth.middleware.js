@@ -7,8 +7,9 @@ const auth = (req, res, next) => {
         jwt.verify(token, 'admin', (err, decoded) => {
             if (decoded) {
                 console.log('decoded',decoded)
-                req.body.userID = decoded.userID
+                req.body.userID = decoded.userId
                 req.body.name = decoded.name
+                req.body.isAdmin = decoded.isAdmin
                 next()
             } else {
                 res.send({ "Error": err })
